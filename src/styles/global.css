@@ -894,6 +894,19 @@ button {
   color: rgb(255 255 255 / 0.84);
 }
 
+.process-list--light li {
+  background: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+.process-list--light h2 {
+  color: var(--color-primary);
+}
+
+.process-list--light p {
+  color: var(--color-muted);
+}
+
 .commodity-card span {
   color: var(--color-brown);
   font-size: 0.86rem;

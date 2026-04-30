@@ -1,5 +1,4 @@
 import { siteConfig, organizationSchema } from '../data/site';
-import type { Property } from '../data/properties';
 
 export type SeoConfig = {
   title: string;
@@ -19,31 +18,6 @@ export function absoluteUrl(path = '/') {
 export function withOrganizationSchema(jsonLd?: SeoConfig['jsonLd']) {
   const schemas = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
   return [organizationSchema, ...schemas];
-}
-
-export function createRealEstateListingSchema(property: Property) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'RealEstateListing',
-    name: property.name,
-    description: property.description,
-    url: absoluteUrl(`/property?listing=${property.id}`),
-    image: property.image,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: property.location,
-      addressCountry: 'ID',
-    },
-    offers: {
-      '@type': 'Offer',
-      availability: `https://schema.org/${property.status === 'Available' ? 'InStock' : 'LimitedAvailability'}`,
-      priceSpecification: {
-        '@type': 'PriceSpecification',
-        priceCurrency: 'IDR',
-        description: property.price,
-      },
-    },
-  };
 }
 
 export const localBusinessSchema = {
